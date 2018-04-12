@@ -72,7 +72,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     if (subtree != null) {
 
                          //subtree.getChildren().add(new MyTreeNode("Total Of Group","","","",Format.doubleFmt.format(totalgroup),""));
-                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
+                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbranold, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
                 ));
                 
                         myroot.getChildren().add(subtree);
@@ -127,17 +127,14 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
 
 
             if (subtree != null) {
-               subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
-                ));
+               
+                subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbranold, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),"" ));
                 subtree.setS_bran(code + " " + tempbran + " " + tempbname + " Total " + countgroup + " Record");
-                
                 myroot.getChildren().add(subtree);
             }
-            //myroot.getChildren().add(new MyTreeNode("Total All","","","",Format.doubleFmt.format(totalall),""));
-
-           myroot.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(total1), Format.doubleFmt.format(total2),""
-                ));
-                
+            
+           myroot.getChildren().add(new BeanReportHourly("Total All", "", "", "", Format.doubleFmt.format(total1),  Format.doubleFmt.format(total2), ""
+           ));
             myroot.setS_bran("Report List Of " + counttotal + " Record");
         } else {
             while (rs.next()) {
@@ -158,14 +155,15 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     tempdateold = " ";
                     if (subtree != null) {
 
-                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
-                ));
-               
+                        
+                        subtree.getChildren().add(new BeanReportHourly(tempbranold, "", "", "Total " + code + " " + tempbranold, Format.doubleFmt.format(totalgroup1),Format.doubleFmt.format(totalgroup2),""
+                        ));
                         myroot.getChildren().add(subtree);
                         totalgroup1 = 0;
                         totalgroup2 = 0;
-                   
+                        
                         subtree.setS_bran(code + " " + tempbranold + " " + tempbnameold + " Total " + countgroup + " Record");
+                        
                     }
 
                     subtree = new BeanReportHourly();
@@ -213,16 +211,20 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
             }
 //            Format.doubleFmt.format(totalgroup)
             if (subtree != null) {
-                subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
+                
+                subtree.getChildren().add(new BeanReportHourly(tempbran, "", "", "Total " + code + " " + tempbran, Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
                 ));
                 subtree.setS_bran(code + " " + tempbran + " " + tempbname + " Total " + countgroup + " Record");
                 myroot.getChildren().add(subtree);
+                
+                
             }
             //myroot.getChildren().add(new MyTreeNode("Total All","","","",Format.doubleFmt.format(totalall),""));
 
             myroot.getChildren().add(new BeanReportHourly("Total All", "", "", "", Format.doubleFmt.format(total1), Format.doubleFmt.format(total2), ""
             ));
             myroot.setS_bran("Report List Of " + counttotal + " Record");
+            
             
             
             

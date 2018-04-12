@@ -33,8 +33,7 @@ public class MainReportHourly extends javax.swing.JDialog {
 
         t_date1.setText(Format.dateFmtShow.format(new java.util.Date()));
         t_date2.setText(Format.dateFmtShow.format(new java.util.Date()));
-        t_date1.setText("01/10/2017");
-        t_date2.setText("01/10/2017");
+        
         getLanguage lang = new getLanguage();
         lang.setText(frmName, this, lang.getChklang());
     }

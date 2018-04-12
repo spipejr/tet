@@ -377,8 +377,8 @@ private void inittbl()
         tcm.getColumn(1).setCellRenderer(FormatCell.l());
         tcm.getColumn(2).setCellRenderer(FormatCell.l());
         tcm.getColumn(3).setCellRenderer(FormatCell.l());
-        tcm.getColumn(4).setCellRenderer(FormatCell.l());
-        tcm.getColumn(5).setCellRenderer(FormatCell.l());
+        tcm.getColumn(4).setCellRenderer(FormatCell.r());
+        tcm.getColumn(5).setCellRenderer(FormatCell.r());
         tcm.getColumn(6).setCellRenderer(FormatCell.l());
        
         
@@ -459,14 +459,20 @@ private void inittbl()
             }
             else
             {
-                  sql = "Select Hour(PTimeOut) as time,dkictran.PCode as PCode ,PDesc as PDesc,Sum(PQty) as Qty,PPrice11 as price,PUnit1 as unit,b.name as branchname,b.code as BranchCode "
-                    + "From dkictran "
-                    + "inner join product Product On Product.PCode=dkictran.PCode "
-                    + "inner join branfile b on dkictran.s_bran = b.code "
-                    + "left join brandfile bf on b.brandcode = bf.brandcode "
-                    + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
-                    +"group by "+code+",time,PCode order by "+code+",time,PCode";
+//                  sql = "Select Hour(PTimeOut) as time,dkictran.PCode as PCode ,PDesc as PDesc,Sum(PQty) as Qty,PPrice11 as price,PUnit1 as unit,b.name as branchname,b.code as BranchCode "
+//                    + "From dkictran "
+//                    + "left join product Product On Product.PCode=dkictran.PCode "
+//                    + "left join branfile b on dkictran.s_bran = b.code "
+//                    //+ "left join brandfile bf on b.brandcode = bf.brandcode "
+//                    + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
+//                    +"group by "+code+",time,PCode order by "+code+",time,PCode";
                   
+                sql = "Select Hour(PTimeOut) as time,dk.PCode as PCode ,PDesc as PDesc,Sum(PQty) as Qty,PPrice11 as price,PUnit1 as unit,b.name as branchname,b.code as BranchCode "
+                + " From dkictran dk"
+                + " left join product P On dk.PCode = P.PCode  "
+                + " left join branfile b on dk.s_bran = b.code "
+                + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
+                +"group by "+code+",time,PCode order by "+code+",time,PCode";
 //                sql = "SELECT punit1,s_price,pdesc,s_pcode,pgroup,b.name as branchname,bt.btname as Btypename,ar.name as BAreaname"
 //                        + ",si.name as BSizename,pl.name as BPlanname,st.name as BStorename,com.name as Companyname"
 //                        + ",bf.brandname as Brandname,bust.busname as Bustypename,gf.groupname as PGroupName"
