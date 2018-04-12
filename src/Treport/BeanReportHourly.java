@@ -25,7 +25,7 @@ public class BeanReportHourly {
     public BeanReportHourly() {
     }
 
-    public BeanReportHourly(String s_bran, String pUnit, String hour, String pcode, String pdesc, String qty, String price) {
+    public BeanReportHourly(String s_bran, String hour, String pcode, String pdesc, String qty, String price,String pUnit) {
         this.s_bran = s_bran;
         this.pUnit = pUnit;
         this.hour = hour;

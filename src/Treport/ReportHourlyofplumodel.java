@@ -27,8 +27,11 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
     dbUtility db = new dbUtility();
     private String[] timeIn = new String[24];
     private int[] timeOut = new int[24];
+    String times = "";
+    
     public ReportHourlyofplumodel(String sql, String code, String name) throws SQLException {
         db.dbconnect();
+        setTime();
         stmt = null;
         String tempbran = " ";
         String tempbranold = " ";
@@ -80,7 +83,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                             cvth.ASCII2Unicode(rs.getString("PDesc")),
                             Format.doubleFmt.format(rs.getDouble("Qty")),
                             Format.doubleFmt.format(rs.getDouble("price")),
-                             cvth.ASCII2Unicode(rs.getString("unit"))
+                            cvth.ASCII2Unicode(rs.getString("unit"))
                     ));
 
                 } else {
@@ -134,7 +137,16 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
 
                 tempbran = rs.getString(code);
                 tempbname = rs.getString(name);
-
+                times = "";
+                            int hr = rs.getInt("time");
+                            for (int ii = 0; ii < timeIn.length; ii++)
+                            {
+                                if (hr == ii)
+                                {
+                                    times = timeIn[ii];
+                                    break;
+                                }
+                            }
                 if (!tempbranold.equals(tempbran)) {
                     tempdateold = " ";
                     if (subtree != null) {
@@ -155,6 +167,8 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     i = 1;
 
                     subtree.getChildren().add(new BeanReportHourly(cvth.ASCII2Unicode(rs.getString(code)),
+                           
+                            
                             cvth.ASCII2Unicode(rs.getString("time")),
                             cvth.ASCII2Unicode(rs.getString("PCode")),
                             cvth.ASCII2Unicode(rs.getString("PDesc")),
@@ -274,7 +288,6 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
         switch (column) {
             case 0:
                 return treenode.getS_bran();
-            
             case 1:
                 return treenode.getHour();
             case 2:
@@ -286,7 +299,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
             case 5:
                 return treenode.getPrice();
             case 6:
-            return treenode.getPUnit();
+                return treenode.getPUnit();
             
             default:
                 return "Unknown";
