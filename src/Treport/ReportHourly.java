@@ -465,8 +465,7 @@ private void inittbl()
                     + "inner join branfile b on dkictran.s_bran = b.code "
                     + "left join brandfile bf on b.brandcode = bf.brandcode "
                     + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
-                    + "Group By time,PCode "
-                    + "Order By time,Qty Desc";
+                    +"group by "+code+",time,PCode order by "+code+",time,PCode";
                   
 //                sql = "SELECT punit1,s_price,pdesc,s_pcode,pgroup,b.name as branchname,bt.btname as Btypename,ar.name as BAreaname"
 //                        + ",si.name as BSizename,pl.name as BPlanname,st.name as BStorename,com.name as Companyname"

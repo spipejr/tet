@@ -40,8 +40,8 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
         String tempbname = "";
         String tempbnameold = "";
       
-        double total1 = 0,total2 = 0,total3 = 0;
-        double totalgroup1 = 0, totalgroup2 = 0, totalgroup3 = 0;
+        double total1 = 0,total2 = 0;
+        double totalgroup1 = 0, totalgroup2 = 0;
         int countgroup = 0;
         int counttotal = 0;
         int countdate = 0;
@@ -57,18 +57,27 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
 
                 tempbran = rs.getString(code);
                 tempbname = cvth.ASCII2Unicode(rs.getString(name));
+                times = "";
+                            int hr = rs.getInt("time");
+                            for (int ii = 0; ii < timeIn.length; ii++)
+                            {
+                                if (hr == ii)
+                                {
+                                    times = timeIn[ii];
+                                    break;
+                                }
+                            }
                 if (!tempbranold.equals(tempbran)) {
                     tempdateold = " ";
                     if (subtree != null) {
 
                          //subtree.getChildren().add(new MyTreeNode("Total Of Group","","","",Format.doubleFmt.format(totalgroup),""));
-                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),Format.doubleFmt.format(totalgroup3)
+                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
                 ));
                 
                         myroot.getChildren().add(subtree);
                         totalgroup1 = 0;
                         totalgroup2 = 0;
-                        totalgroup3 = 0;
                        
                         subtree.setS_bran(code + " " + tempbranold + " " + tempbnameold + " Total " + countgroup + " Record");
                         }
@@ -78,7 +87,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     i = 1;
 
                     subtree.getChildren().add(new BeanReportHourly(cvth.ASCII2Unicode(rs.getString(code)),
-                            cvth.ASCII2Unicode(rs.getString("time")),
+                            cvth.ASCII2Unicode(times),
                             cvth.ASCII2Unicode(rs.getString("PCode")),
                             cvth.ASCII2Unicode(rs.getString("PDesc")),
                             Format.doubleFmt.format(rs.getDouble("Qty")),
@@ -89,7 +98,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                 } else {
 
                     subtree.getChildren().add(new BeanReportHourly(cvth.ASCII2Unicode(rs.getString(code)),
-                            cvth.ASCII2Unicode(rs.getString("time")),
+                            cvth.ASCII2Unicode(times),
                             cvth.ASCII2Unicode(rs.getString("PCode")),
                             cvth.ASCII2Unicode(rs.getString("PDesc")),
                             Format.doubleFmt.format(rs.getDouble("Qty")),
@@ -99,14 +108,12 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
 
                 }
 
-//                totalgroup1 += rs.getDouble("s_price");
-//                totalgroup2 += rs.getDouble("e_qty");
-//                totalgroup3 += rs.getInt("e_amt");
-//
-//
-//                total1 += rs.getDouble("s_price");
-//                total2 += rs.getDouble("e_qty");
-//                total3 += rs.getInt("e_amt");
+                totalgroup1 += rs.getDouble("Qty");
+                totalgroup2 += rs.getDouble("price");
+
+
+                total1 += rs.getDouble("Qty");
+                total2 += rs.getDouble("price");
 
 
                 i++;
@@ -120,7 +127,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
 
 
             if (subtree != null) {
-               subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),Format.doubleFmt.format(totalgroup3)
+               subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
                 ));
                 subtree.setS_bran(code + " " + tempbran + " " + tempbname + " Total " + countgroup + " Record");
                 
@@ -128,7 +135,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
             }
             //myroot.getChildren().add(new MyTreeNode("Total All","","","",Format.doubleFmt.format(totalall),""));
 
-           myroot.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),Format.doubleFmt.format(totalgroup3)
+           myroot.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(total1), Format.doubleFmt.format(total2),""
                 ));
                 
             myroot.setS_bran("Report List Of " + counttotal + " Record");
@@ -151,13 +158,12 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     tempdateold = " ";
                     if (subtree != null) {
 
-                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),Format.doubleFmt.format(totalgroup3)
+                        subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
                 ));
                
                         myroot.getChildren().add(subtree);
                         totalgroup1 = 0;
                         totalgroup2 = 0;
-                        totalgroup3 = 0;
                    
                         subtree.setS_bran(code + " " + tempbranold + " " + tempbnameold + " Total " + countgroup + " Record");
                     }
@@ -169,7 +175,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     subtree.getChildren().add(new BeanReportHourly(cvth.ASCII2Unicode(rs.getString(code)),
                            
                             
-                            cvth.ASCII2Unicode(rs.getString("time")),
+                            cvth.ASCII2Unicode(times),
                             cvth.ASCII2Unicode(rs.getString("PCode")),
                             cvth.ASCII2Unicode(rs.getString("PDesc")),
                             Format.doubleFmt.format(rs.getDouble("Qty")),
@@ -180,7 +186,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                 } else {
 
                     subtree.getChildren().add(new BeanReportHourly(cvth.ASCII2Unicode(rs.getString(code)),
-                            cvth.ASCII2Unicode(rs.getString("time")),
+                            cvth.ASCII2Unicode(times),
                             cvth.ASCII2Unicode(rs.getString("PCode")),
                             cvth.ASCII2Unicode(rs.getString("PDesc")),
                             Format.doubleFmt.format(rs.getDouble("Qty")),
@@ -189,61 +195,14 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
                     ));
 
                 }
+                totalgroup1 += rs.getDouble("Qty");
+                totalgroup2 += rs.getDouble("price");
 
-//                totalgroup1 += rs.getDouble("s_price");
-//                totalgroup2 += rs.getDouble("e_qty");
-//                totalgroup3 += rs.getDouble("e_amt");
-//                totalgroup4 += rs.getDouble("e_disc");
-//                totalgroup5 += rs.getDouble("e_net");
-//                totalgroup6 += rs.getDouble("t_qty");
-//                totalgroup7 += rs.getDouble("t_amt");
-//                totalgroup8 += rs.getDouble("t_disc");
-//                totalgroup9 += rs.getDouble("t_net");
-//                totalgroup10 += rs.getDouble("d_qty");
-//                totalgroup11 += rs.getDouble("d_amt");
-//                totalgroup12 += rs.getDouble("d_disc");
-//                totalgroup13 += rs.getDouble("d_net");
-//                totalgroup14 += rs.getDouble("p_qty");
-//                totalgroup15 += rs.getDouble("p_amt");
-//                totalgroup16 += rs.getDouble("p_disc");
-//                totalgroup17 += rs.getDouble("p_net");
-//                totalgroup18 += rs.getDouble("w_qty");
-//                totalgroup19 += rs.getDouble("w_amt");
-//                totalgroup20 += rs.getDouble("w_disc");
-//                totalgroup21 += rs.getDouble("w_net");
-//                totalgroup22 += rs.getDouble("s_qty");
-//                totalgroup23 += rs.getDouble("s_amt");
-//                totalgroup24 += rs.getDouble("s_disc");
-//                totalgroup25 += rs.getDouble("s_net");
-//                totalgroup26 += rs.getDouble("s_price");
 
-//                total1 += rs.getDouble("s_price");
-//                total2 += rs.getDouble("e_qty");
-//                total3 += rs.getDouble("e_amt");
-//                total4 += rs.getDouble("e_disc");
-//                total5 += rs.getDouble("e_net");
-//                total6 += rs.getDouble("t_qty");
-//                total7 += rs.getDouble("t_amt");
-//                total8 += rs.getDouble("t_disc");
-//                total9 += rs.getDouble("t_net");
-//                total10 += rs.getDouble("d_qty");
-//                total11 += rs.getDouble("d_amt");
-//                total12 += rs.getDouble("d_disc");
-//                total13 += rs.getDouble("d_net");
-//                total14 += rs.getDouble("p_qty");
-//                total15 += rs.getDouble("p_amt");
-//                total16 += rs.getDouble("p_disc");
-//                total17 += rs.getDouble("p_net");
-//                total18 += rs.getDouble("w_qty");
-//                total19 += rs.getDouble("w_amt");
-//                total20 += rs.getDouble("w_disc");
-//                total21 += rs.getDouble("w_net");
-//                total22 += rs.getDouble("s_qty");
-//                total23 += rs.getDouble("s_amt");
-//                total24 += rs.getDouble("s_disc");
-//                total25 += rs.getDouble("s_net");
-//                total26 += rs.getDouble("s_price");
-//                totalall +=price;
+                total1 += rs.getDouble("Qty");
+                total2 += rs.getDouble("price");
+                
+                
                 i++;
                 countgroup++;
                 counttotal++;
@@ -253,18 +212,21 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
 
             }
 //            Format.doubleFmt.format(totalgroup)
-
             if (subtree != null) {
-                subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),Format.doubleFmt.format(totalgroup3)
+                subtree.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),""
                 ));
                 subtree.setS_bran(code + " " + tempbran + " " + tempbname + " Total " + countgroup + " Record");
                 myroot.getChildren().add(subtree);
             }
             //myroot.getChildren().add(new MyTreeNode("Total All","","","",Format.doubleFmt.format(totalall),""));
 
-            myroot.getChildren().add(new BeanReportHourly( "Total " + code + " " + tempbran, "","","",Format.doubleFmt.format(totalgroup1), Format.doubleFmt.format(totalgroup2),Format.doubleFmt.format(totalgroup3)
-                ));
+            myroot.getChildren().add(new BeanReportHourly("Total All", "", "", "", Format.doubleFmt.format(total1), Format.doubleFmt.format(total2), ""
+            ));
             myroot.setS_bran("Report List Of " + counttotal + " Record");
+            
+            
+            
+//           
         }
     }
 
