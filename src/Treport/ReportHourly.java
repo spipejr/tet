@@ -473,6 +473,9 @@ private void inittbl()
                 + " left join branfile b on dk.s_bran = b.code "
                 + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
                 +"group by "+code+",time,PCode order by "+code+",time,PCode";
+                
+                
+                
 //                sql = "SELECT punit1,s_price,pdesc,s_pcode,pgroup,b.name as branchname,bt.btname as Btypename,ar.name as BAreaname"
 //                        + ",si.name as BSizename,pl.name as BPlanname,st.name as BStorename,com.name as Companyname"
 //                        + ",bf.brandname as Brandname,bust.busname as Bustypename,gf.groupname as PGroupName"
