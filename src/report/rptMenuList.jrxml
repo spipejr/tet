@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="553" leftMargin="21" rightMargin="21" topMargin="21" bottomMargin="21">
+	<property name="ireport.zoom" value="1.9487171000000054"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="127"/>
+	<style name="style1" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+	<parameter name="companyName" class="java.lang.String"/>
+	<parameter name="Reportheader" class="java.lang.String"/>
+	<parameter name="branch1" class="java.lang.String"/>
+	<parameter name="branch2" class="java.lang.String"/>
+	<parameter name="forname" class="java.lang.String"/>
+	<parameter name="currentDate" class="java.lang.String"/>
+	<parameter name="code" class="java.lang.String"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.String"/>
+	<parameter name="totalall" class="java.lang.String"/>
+	<parameter name="branchtxt" class="java.lang.String"/>
+	<parameter name="application" class="java.lang.String"/>
+	<parameter name="user" class="java.lang.String"/>
+	<parameter name="other1" class="java.lang.String"/>
+	<parameter name="other2" class="java.lang.String"/>
+	<parameter name="other3" class="java.lang.String"/>
+	<parameter name="other4" class="java.lang.String"/>
+	<parameter name="other5" class="java.lang.String"/>
+	<parameter name="other6" class="java.lang.String"/>
+	<parameter name="other7" class="java.lang.String"/>
+	<parameter name="other8" class="java.lang.String"/>
+	<parameter name="other9" class="java.lang.String"/>
+	<parameter name="other10" class="java.lang.String"/>
+	<parameter name="Active" class="java.lang.String"/>
+	<parameter name="branchCodeName" class="java.lang.String"/>
+	<parameter name="forbranch" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="code" class="java.lang.String">
+		<fieldDescription><![CDATA[code]]></fieldDescription>
+	</field>
+	<field name="gcode" class="java.lang.String">
+		<fieldDescription><![CDATA[gcode]]></fieldDescription>
+	</field>
+	<field name="gname" class="java.lang.String">
+		<fieldDescription><![CDATA[gname]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="other1" class="java.lang.String">
+		<fieldDescription><![CDATA[other1]]></fieldDescription>
+	</field>
+	<field name="other10" class="java.lang.String">
+		<fieldDescription><![CDATA[other10]]></fieldDescription>
+	</field>
+	<field name="other2" class="java.lang.String">
+		<fieldDescription><![CDATA[other2]]></fieldDescription>
+	</field>
+	<field name="other3" class="java.lang.String">
+		<fieldDescription><![CDATA[other3]]></fieldDescription>
+	</field>
+	<field name="other4" class="java.lang.String">
+		<fieldDescription><![CDATA[other4]]></fieldDescription>
+	</field>
+	<field name="other5" class="java.lang.String">
+		<fieldDescription><![CDATA[other5]]></fieldDescription>
+	</field>
+	<field name="other6" class="java.lang.String">
+		<fieldDescription><![CDATA[other6]]></fieldDescription>
+	</field>
+	<field name="other7" class="java.lang.String">
+		<fieldDescription><![CDATA[other7]]></fieldDescription>
+	</field>
+	<field name="other8" class="java.lang.String">
+		<fieldDescription><![CDATA[other8]]></fieldDescription>
+	</field>
+	<field name="other9" class="java.lang.String">
+		<fieldDescription><![CDATA[other9]]></fieldDescription>
+	</field>
+	<variable name="code_1" class="java.lang.Integer" resetType="Group" resetGroup="gtype" calculation="Count">
+		<variableExpression><![CDATA[$F{code}]]></variableExpression>
+	</variable>
+	<variable name="code_2" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{code}]]></variableExpression>
+	</variable>
+	<group name="gtype">
+		<groupExpression><![CDATA[$F{gcode}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<rectangle radius="10">
+					<reportElement x="2" y="2" width="553" height="18" backcolor="#D5D2D2"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="33" y="2" width="41" height="20"/>
+					<textElement>
+						<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H"/>
+					</textElement>
+					<text><![CDATA[Menu]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="74" y="2" width="143" height="20"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{gcode}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="24">
+				<line>
+					<reportElement x="0" y="3" width="555" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="74" y="3" width="62" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="215" y="4" width="100" height="20"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{branchtxt}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="23" width="555" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="136" y="4" width="79" height="20"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{code_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<textField>
+				<reportElement x="139" y="36" width="277" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="16" isBold="true" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Reportheader}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="0" width="277" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="22" isBold="true" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{companyName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="511" y="0" width="34" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="false" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="461" y="0" width="50" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="false" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Page : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="30" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="31" y="0" width="114" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{currentDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<elementGroup/>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="74" y="2" width="47" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="2" width="79" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="2" width="135" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{other2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="2" width="54" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{other3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="2" width="56" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true" pdfFontName="TH Sarabun Bol.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{other4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="74" y="0" width="47" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="79" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="135" height="17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="54" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="0" width="56" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other4}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="175" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{application}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="0" width="199" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{user}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="35">
+			<textField>
+				<reportElement x="2" y="0" width="175" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{application}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="356" y="0" width="199" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{user}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="20" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="33" y="0" width="71" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalall}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="0" width="100" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{branchtxt}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="105" y="1" width="57" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{code_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

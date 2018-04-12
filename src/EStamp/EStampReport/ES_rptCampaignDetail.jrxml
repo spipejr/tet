@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.7715610000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="companyName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="application" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="user" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="s_campaignRemark" class="java.lang.String">
+		<fieldDescription><![CDATA[s_campaignRemark]]></fieldDescription>
+	</field>
+	<field name="s_campaigncode" class="java.lang.String">
+		<fieldDescription><![CDATA[s_campaigncode]]></fieldDescription>
+	</field>
+	<field name="s_campaigndateEnd" class="java.lang.String">
+		<fieldDescription><![CDATA[s_campaigndateEnd]]></fieldDescription>
+	</field>
+	<field name="s_campaigndateStr" class="java.lang.String">
+		<fieldDescription><![CDATA[s_campaigndateStr]]></fieldDescription>
+	</field>
+	<field name="s_campaignname" class="java.lang.String">
+		<fieldDescription><![CDATA[s_campaignname]]></fieldDescription>
+	</field>
+	<field name="s_procode" class="java.lang.String">
+		<fieldDescription><![CDATA[s_procode]]></fieldDescription>
+	</field>
+	<field name="s_prodateEnd" class="java.lang.String">
+		<fieldDescription><![CDATA[s_prodateEnd]]></fieldDescription>
+	</field>
+	<field name="s_prodateStr" class="java.lang.String">
+		<fieldDescription><![CDATA[s_prodateStr]]></fieldDescription>
+	</field>
+	<field name="s_proday" class="java.lang.String">
+		<fieldDescription><![CDATA[s_proday]]></fieldDescription>
+	</field>
+	<field name="s_proname" class="java.lang.String">
+		<fieldDescription><![CDATA[s_proname]]></fieldDescription>
+	</field>
+	<field name="s_prosaletype" class="java.lang.String">
+		<fieldDescription><![CDATA[s_prosaletype]]></fieldDescription>
+	</field>
+	<field name="s_protype" class="java.lang.String">
+		<fieldDescription><![CDATA[s_protype]]></fieldDescription>
+	</field>
+	<variable name="s_campaigncode_1" class="java.lang.Integer" resetType="Group" resetGroup="gCampaign" calculation="Count">
+		<variableExpression><![CDATA[$F{s_campaigncode}]]></variableExpression>
+	</variable>
+	<variable name="s_campaigncode_2" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{s_campaigncode}]]></variableExpression>
+	</variable>
+	<group name="gCampaign">
+		<groupExpression><![CDATA[$F{s_campaigncode}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<rectangle radius="10">
+					<reportElement x="2" y="2" width="550" height="18" backcolor="#E8E8E8"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="287" y="2" width="46" height="17"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[หมายเหตุ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="24" y="2" width="263" height="17"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{s_campaigncode} + " " + $F{s_campaignname}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="333" y="2" width="203" height="17"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{s_campaignRemark}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="17">
+				<line>
+					<reportElement x="24" y="16" width="531" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="24" y="0" width="110" height="17"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[รวมทั้งสิ้นของแสตมป์แคมเปญ ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="24" y="0" width="531" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="248" y="0" width="82" height="17"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="13" isBold="true"/>
+					</textElement>
+					<text><![CDATA[รายการ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="16" width="555" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="205" y="0" width="43" height="16"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{s_campaigncode_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="135" y="0" width="60" height="16"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="13"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{s_campaigncode}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="gProtype">
+		<groupExpression><![CDATA[$F{s_protype}]]></groupExpression>
+		<groupHeader>
+			<band height="18">
+				<textField>
+					<reportElement x="24" y="0" width="512" height="18"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH SarabunPSK" size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{s_protype}.equals("1")?"โปรโมชั่นสำหรับการแจกแต้ม":"โปรโมชั่นสำหรับการแลกแต้ม"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement x="20" y="38" width="112" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="482" y="38" width="50" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13" isBold="true" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[หน้า]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="533" y="38" width="22" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13" isBold="true" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="147" y="31" width="282" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รายงานแสตมป์แคมเปญ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="38" width="20" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13" isBold="true" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H"/>
+				</textElement>
+				<text><![CDATA[วันที่]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="0" width="512" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="TH SarabunPSK" size="22" isBold="true" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{companyName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="229" y="1" width="60" height="18"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[วันที่เริ่ม]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="0" width="64" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[วันร่วมรายการ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="0" width="64" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ประเภทการขาย]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="1" width="42" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รหัส ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="1" width="145" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รายละเอียด]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="1" width="60" height="18"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[วันที่สิ้นสุด]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="38" y="0" width="42" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{s_procode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="0" width="145" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{s_proname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="229" y="0" width="60" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{s_prodateStr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="291" y="0" width="60" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{s_prodateEnd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="0" width="64" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{s_proday}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="0" width="117" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{s_prosaletype}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="0" width="175" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{application}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="0" width="199" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" pdfFontName="TH Sarabun.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{user}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="47" height="18"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รวมทั้งสิ้น]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="1" width="75" height="18"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[รายการ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="48" y="0" width="47" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH SarabunPSK" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{s_campaigncode_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

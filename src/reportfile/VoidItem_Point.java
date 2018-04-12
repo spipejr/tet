@@ -1,0 +1,391 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package reportfile;
+
+import dbutility.dbUtility;
+import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Locale;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import jxl.write.WriteException;
+import net.sf.jasperreports.view.save.JRSingleSheetXlsSaveContributor;
+import static report.databeanMasterfile.cvth;
+import static reportfile.Voiditem_Deailed.dateshow1;
+import static reportfile.Voiditem_Deailed.dateshow2;
+import utilititiesfunction.Export2Excel;
+
+/**
+ *
+ * @author march
+ */
+public class VoidItem_Point extends javax.swing.JDialog {
+
+    dbUtility db = new dbUtility();
+    DefaultTableModel model = new DefaultTableModel();
+    public static String condate001 = "", condate002 = "", bran1 = "", bran2 = "", area1 = "", area2 = "", cash1 = "", cash2 = "", gradr1 = "", grade2 = "", dateshow1 = "", dateshow2 = "";
+
+    public VoidItem_Point(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        model = (DefaultTableModel) jTable1.getModel();
+        new dbUtility().dbconnect();
+        loadtable();
+        setText();
+        settable();
+//        settable();
+    }
+
+    public VoidItem_Point() {
+
+    }
+
+    public void setText() {
+        txtshowdate1.setText(dateshow1);
+        txtshowdate2.setText(dateshow2);
+    }
+
+    public void loadtable() {
+        String sql = "select sum2.S_Bran,sum2.BArea,sum2.voidgroup,sum2.BranName,sum2.Cashiernumber,sum2.Name,sum2.sumamtinvoid,sum2.suminvoid,sum2.sumamtoutvoid,sum2.sumoutvoid\n"
+                + ",sum(sum2.suminvoid + sum2.sumoutvoid) as summaryQty\n"
+                + ",sum(sum2.sumamtinvoid + sum2.sumamtoutvoid) as summaryamt\n"
+                + "from(select sum1.S_Bran,sum1.BArea,sum1.voidgroup,sum1.BranName,sum1.Cashiernumber,sum1.Name\n"
+                + ",sum(if(sum1.coutvoid=\"invoid\",1,0)) as suminvoid\n"
+                + ",sum(if(sum1.coutvoid=\"invoid\",Amt,0)) as sumamtinvoid\n"
+                + ",sum(if(sum1.coutvoid=\"outvoid\",1,0)) as sumoutvoid \n"
+                + ",sum(if(sum1.coutvoid=\"outvoid\",Amt,0)) as sumamtoutvoid\n"
+                + "from(select S_Bran,BArea,voidgroup,substring_index(cashier,'-',1) as Cashiernumber,pos.Name,bf.Name as BranName\n"
+                + ",if(qty<=\"5.00\",\"invoid\"\n"
+                + ",if(qty>\"5.00\",\"outvoid\",\"allvoid\")) as coutvoid ,Amt,S_Date\n"
+                + "from s_void sv \n"
+                + "left join branfile bf on sv.S_Bran = bf.Code \n"
+                + "left join posuser pos on sv.VoidUser = pos.UserName\n"
+                + "left join product pro on sv.PCode = pro.PCode\n"
+                + "where "
+                + "s_date>='" + condate001 + "' and s_date<='" + condate002 + "' "
+                + " and s_bran>='" + bran1 + "' and s_bran<='" + bran2 + "' "
+                + "and voidgroup>='" + gradr1 + "' and voidgroup<='" + grade2 + "' "
+                + "and substring_index(cashier,'-',1)>='" + cash1 + "' and substring_index(cashier,'-',1)<='" + cash2 + "'"
+                + "and BArea>='" + area1 + "' and BArea<='" + area2 + "' ) as sum1 group by Cashiernumber) as sum2 group by sum2.Cashiernumber order by s_bran";
+        try {
+            Statement st = (Statement) dbUtility.con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Object[] row;
+                row = new Object[12];
+                row[0] = rs.getString("s_bran");
+                row[1] = rs.getString("BArea");
+                row[2] = rs.getString("voidgroup");
+                row[3] = cvth.ASCII2Unicode(rs.getString("BranName"));
+                row[4] = rs.getString("CashierNumber");
+                row[5] = cvth.ASCII2Unicode(rs.getString("Name"));
+                row[6] = rs.getString("suminvoid");
+                row[7] = rs.getString("sumamtinvoid");
+                row[8] = rs.getString("sumoutvoid");
+                row[9] = cvth.ASCII2Unicode(rs.getString("sumamtoutvoid"));
+                row[10] = rs.getString("summaryqty");
+                row[11] = rs.getString("summaryAmt");
+                model.addRow(row);
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtshowdate1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtshowdate2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setFont(new java.awt.Font("Norasi", 1, 18)); // NOI18N
+        jLabel1.setText("รายงานการ Void Item แบบสรุป");
+
+        jLabel2.setFont(new java.awt.Font("Norasi", 1, 18)); // NOI18N
+        jLabel2.setText("วันที่");
+
+        txtshowdate1.setFont(new java.awt.Font("Norasi", 1, 18)); // NOI18N
+        txtshowdate1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtshowdate1.setText("xx/xx/xxxx");
+
+        jLabel5.setFont(new java.awt.Font("Norasi", 1, 36)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("-");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        txtshowdate2.setFont(new java.awt.Font("Norasi", 1, 18)); // NOI18N
+        txtshowdate2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtshowdate2.setText("xx/xx/xxxx");
+
+        jButton3.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Excel-icon.png"))); // NOI18N
+        jButton3.setText("Exel File");
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Printer-icon.png"))); // NOI18N
+        jButton2.setText("Print");
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jButton1.setFont(new java.awt.Font("DejaVu Sans", 1, 16)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/LogOut-icon.png"))); // NOI18N
+        jButton1.setText("Exit");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(513, 513, 513)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtshowdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtshowdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtshowdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtshowdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
+        jTable1.setFont(new java.awt.Font("Norasi", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "รหัสสาขา", "เขต", "เกรด", "ชื่อสาขา", "แคชเชียร์", "ชื่อนามสกุล", "จำนวนครั้งVoidมาตราฐาน", "มูลค่าVoidมาตราฐาน", "จำนวนครั้งVoidเกินมาตราฐาน", "มูลค่าVoidเกินมาตราฐาน", "รวมVoidทั้งหมด", "มูลค่าทั้งหมด"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Export2Excel test = new Export2Excel();
+        JFileChooser chooser = new JFileChooser();
+
+        chooser.setSelectedFile(test.getDefaulepath());
+        chooser.setFileFilter(new JRSingleSheetXlsSaveContributor(Locale.ENGLISH, null));
+
+        int confirm = chooser.showSaveDialog(this);
+        if (confirm == JFileChooser.APPROVE_OPTION) {
+
+            File curFile = chooser.getSelectedFile();
+
+            if (curFile.exists()) {
+                int confirm2 = JOptionPane.showConfirmDialog(this, "ข้อมูลนี้มีอยู่แล้ว คุณต้องการบันทึกรายการนี้หรือไม่...?", "Confirm", JOptionPane.YES_NO_OPTION);
+                if (confirm2 == JOptionPane.NO_OPTION) {
+                    test.setDefaultpath(curFile);
+                    jButton3ActionPerformed(null);
+
+                    return;
+
+                }
+
+            }
+            DefaultTableModel dtb;
+            JTableHeader jtb;
+            dtb = (DefaultTableModel) jTable1.getModel();
+            jtb = jTable1.getTableHeader();
+            try {
+                test.setOutputFile(curFile.toString());
+                test.write2single(dtb, jtb);
+                test.setDefaultpath(curFile);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+            } catch (WriteException ex) {
+                JOptionPane.showMessageDialog(this, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VoidItem_Point.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VoidItem_Point.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VoidItem_Point.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VoidItem_Point.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                VoidItem_Point dialog = new VoidItem_Point(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel txtshowdate1;
+    private javax.swing.JLabel txtshowdate2;
+    // End of variables declaration//GEN-END:variables
+public void settable() {
+        jTable1.setShowGrid(true);
+//        Jtable_DataVoid.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        jTable1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jTable1.setRowSelectionAllowed(true);
+        jTable1.setShowGrid(true);
+        jTable1.setBackground(Color.WHITE);
+        jTable1.setGridColor(Color.LIGHT_GRAY);
+
+        JTableHeader header = jTable1.getTableHeader();
+        header.setFont(new java.awt.Font("Norasi", java.awt.Font.PLAIN, 14));
+        jTable1.setFont(new java.awt.Font("Norasi", java.awt.Font.PLAIN, 14));
+        jTable1.setRowHeight(30);
+    }
+}
