@@ -1839,23 +1839,23 @@ String date1 = "",date2 ="",dept1="",dept2="",plu1="",plu2="",branch1="",branch2
             para.date1 = "";
         }
         
-        if(!t_dept1.getText().trim().equals(""))
-        {
-            para.dept1= t_dept1.getText();
-        }
-        else
-        {
-            para.dept1 = "";
-        }
-        
-        if(!t_plu1.getText().trim().equals(""))
-        {
-            para.plu1= t_plu1.getText();
-        }
-        else
-        {
-            para.plu1 = "";
-        }
+//        if(!t_dept1.getText().trim().equals(""))
+//        {
+//            para.dept1= t_dept1.getText();
+//        }
+//        else
+//        {
+//            para.dept1 = "";
+//        }
+//        
+//        if(!t_plu1.getText().trim().equals(""))
+//        {
+//            para.plu1= t_plu1.getText();
+//        }
+//        else
+//        {
+//            para.plu1 = "";
+//        }
         
         if(!t_branch1.getText().trim().equals(""))
         {
@@ -1949,23 +1949,23 @@ String date1 = "",date2 ="",dept1="",dept2="",plu1="",plu2="",branch1="",branch2
             para.date2="31/12/9999";
         }
         
-        if(!t_dept2.getText().trim().equals(""))
-        {
-            para.dept2= t_dept2.getText();
-        }
-        else
-        {
-            para.dept2= "ZZZZ";
-        }
-        
-        if(!t_plu2.getText().trim().equals(""))
-        {
-            para.plu2= t_plu2.getText();
-        }
-        else
-        {
-            para.plu2= "ZZZZZZZZZZZZZ";
-        }
+//        if(!t_dept2.getText().trim().equals(""))
+//        {
+//            para.dept2= t_dept2.getText();
+//        }
+//        else
+//        {
+//            para.dept2= "ZZZZ";
+//        }
+//        
+//        if(!t_plu2.getText().trim().equals(""))
+//        {
+//            para.plu2= t_plu2.getText();
+//        }
+//        else
+//        {
+//            para.plu2= "ZZZZZZZZZZZZZ";
+//        }
         
         if(!t_branch2.getText().trim().equals(""))
         {
@@ -2122,23 +2122,23 @@ String date1 = "",date2 ="",dept1="",dept2="",plu1="",plu2="",branch1="",branch2
             para.date1 = "";
         }
         
-        if(!t_dept1.getText().trim().equals(""))
-        {
-            para.dept1= t_dept1.getText();
-        }
-        else
-        {
-            para.dept1 = "";
-        }
-        
-        if(!t_plu1.getText().trim().equals(""))
-        {
-            para.plu1= t_plu1.getText();
-        }
-        else
-        {
-            para.plu1 = "";
-        }
+//        if(!t_dept1.getText().trim().equals(""))
+//        {
+//            para.dept1= t_dept1.getText();
+//        }
+//        else
+//        {
+//            para.dept1 = "";
+//        }
+//        
+//        if(!t_plu1.getText().trim().equals(""))
+//        {
+//            para.plu1= t_plu1.getText();
+//        }
+//        else
+//        {
+//            para.plu1 = "";
+//        }
         
         if(!t_branch1.getText().trim().equals(""))
         {
@@ -2232,23 +2232,23 @@ String date1 = "",date2 ="",dept1="",dept2="",plu1="",plu2="",branch1="",branch2
             para.date2="31/12/9999";
         }
         
-        if(!t_dept2.getText().trim().equals(""))
-        {
-            para.dept2= t_dept2.getText();
-        }
-        else
-        {
-            para.dept2= "ZZZZ";
-        }
-        
-        if(!t_plu2.getText().trim().equals(""))
-        {
-            para.plu2= t_plu2.getText();
-        }
-        else
-        {
-            para.plu2= "ZZZZZZZZZZZZZ";
-        }
+//        if(!t_dept2.getText().trim().equals(""))
+//        {
+//            para.dept2= t_dept2.getText();
+//        }
+//        else
+//        {
+//            para.dept2= "ZZZZ";
+//        }
+//        
+//        if(!t_plu2.getText().trim().equals(""))
+//        {
+//            para.plu2= t_plu2.getText();
+//        }
+//        else
+//        {
+//            para.plu2= "ZZZZZZZZZZZZZ";
+//        }
         
         if(!t_branch2.getText().trim().equals(""))
         {

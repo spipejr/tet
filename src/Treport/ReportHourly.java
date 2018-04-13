@@ -59,7 +59,8 @@ import org.jdesktop.swingx.JXTree;
 import utilititiesfunction.*;
 public class ReportHourly extends javax.swing.JDialog {
 
-     public static String date1 = "",date2 ="",dept1="",dept2="",plu1="",plu2="",branch1="",branch2="",btype1="",btype2=""
+     public static String date1 = "",date2 =""//,dept1="",dept2="",plu1="",plu2=""
+             ,branch1="",branch2="",btype1="",btype2=""
             ,barea1="",barea2="",bsize1="",bsize2="",bplan1="",bplan2="",bstore1="",bstore2="",strday=""
             ,company1="",company2="",brand1="",brand2="",bustype1="",bustype2="",code="",name="";
     private Font fontbold = new Font("Norasi", Font.BOLD, 14);
@@ -447,31 +448,32 @@ private void inittbl()
 //                        +"and locate(dayofweek(d.s_date),'"+strday+"')>0 "
 //                        +"group by "+code+",s_pcode order by "+code+",s_pcode";
             
-            sql = "Select Hour(PTimeOut),dkictran.PCode,PDesc,Sum(PQty) as Qty,PPrice11,PUnit1,bf.brandname as Brandname,b.code as BranchCode "
-                    + "From dkictran "
-                    + "inner join product Product On Product.PCode=dkictran.PCode "
-                    + "inner join branfile b on dkictran.s_bran = b.code "
-                    + "left join brandfile bf on b.brandcode = bf.brandcode "
-                    + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
-                    + "Group By Hour(PTimeOut),dkictran.PCode "
-                    + "Order By Hour(PTimeOut),Qty Desc";
+            sql = "Select Hour(PTimeOut) as time,dk.PCode as PCode ,PDesc as PDesc,Sum(PQty) as Qty,PPrice11 as price,PUnit1 as unit,b.name as branchname,b.code as BranchCode "
+                + " From dkictran dk"
+                + " left join product P On dk.PCode = P.PCode  "
+                + " left join branfile b on dk.s_bran = b.code "
+                + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
+                +"group by "+code+",time,PCode order by "+code+",time,PCode";
             
             }
             else
             {
-//                  sql = "Select Hour(PTimeOut) as time,dkictran.PCode as PCode ,PDesc as PDesc,Sum(PQty) as Qty,PPrice11 as price,PUnit1 as unit,b.name as branchname,b.code as BranchCode "
-//                    + "From dkictran "
-//                    + "left join product Product On Product.PCode=dkictran.PCode "
-//                    + "left join branfile b on dkictran.s_bran = b.code "
-//                    //+ "left join brandfile bf on b.brandcode = bf.brandcode "
-//                    + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
-//                    +"group by "+code+",time,PCode order by "+code+",time,PCode";
+
                   
                 sql = "Select Hour(PTimeOut) as time,dk.PCode as PCode ,PDesc as PDesc,Sum(PQty) as Qty,PPrice11 as price,PUnit1 as unit,b.name as branchname,b.code as BranchCode "
                 + " From dkictran dk"
                 + " left join product P On dk.PCode = P.PCode  "
                 + " left join branfile b on dk.s_bran = b.code "
                 + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
+                +"and dk.s_bran >= '"+cvth.Unicode2ASCII(branch1)+"' and dk.s_bran <= '"+cvth.Unicode2ASCII(branch2)+"' "
+                +"and b.btype >= '"+cvth.Unicode2ASCII(btype1)+"' and b.btype <= '"+cvth.Unicode2ASCII(btype2)+"' "
+                +"and b.barea >= '"+cvth.Unicode2ASCII(barea1)+"' and b.barea <= '"+cvth.Unicode2ASCII(barea2)+"' "
+                +"and b.bsize >= '"+cvth.Unicode2ASCII(bsize1)+"' and b.bsize <= '"+cvth.Unicode2ASCII(bsize2)+"' "
+                +"and b.bplane >= '"+cvth.Unicode2ASCII(bplan1)+"' and b.bplane <= '"+cvth.Unicode2ASCII(bplan2)+"' "
+                +"and b.bstore >= '"+cvth.Unicode2ASCII(bstore1)+"' and b.bstore <= '"+cvth.Unicode2ASCII(bstore2)+"' "
+                +"and b.companycode >= '"+cvth.Unicode2ASCII(company1)+"' and b.companycode <= '"+cvth.Unicode2ASCII(company2)+"' "
+                +"and b.brandcode >= '"+cvth.Unicode2ASCII(brand1)+"' and b.brandcode <= '"+cvth.Unicode2ASCII(brand2)+"' "
+                +"and b.buscode >= '"+cvth.Unicode2ASCII(bustype1)+"' and b.buscode <= '"+cvth.Unicode2ASCII(bustype2)+"' "
                 +"group by "+code+",time,PCode order by "+code+",time,PCode";
                 
                 
@@ -566,33 +568,33 @@ private void inittbl()
             branch += branch2;
         }
 
-        if(!dept1.equals(""))
-        {
-            dept = dept1+" - ";
-        }
-        else
-        {
-            dept = " - ";
-        }
-
-        if(!dept2.equals("ZZZZ"))
-        {
-            dept += dept2;
-        }
-
-        if(!plu1.equals(""))
-        {
-            plu = plu1+" - ";
-        }
-        else
-        {
-            plu = " - ";
-        }
-
-        if(!plu2.equals("ZZZZZZZZZZZZZ"))
-        {
-            plu += plu2;
-        }
+//        if(!dept1.equals(""))
+//        {
+//            dept = dept1+" - ";
+//        }
+//        else
+//        {
+//            dept = " - ";
+//        }
+//
+//        if(!dept2.equals("ZZZZ"))
+//        {
+//            dept += dept2;
+//        }
+//
+//        if(!plu1.equals(""))
+//        {
+//            plu = plu1+" - ";
+//        }
+//        else
+//        {
+//            plu = " - ";
+//        }
+//
+//        if(!plu2.equals("ZZZZZZZZZZZZZ"))
+//        {
+//            plu += plu2;
+//        }
 
         lbldate.setText(date);
 
