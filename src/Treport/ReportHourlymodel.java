@@ -19,7 +19,7 @@ import utilititiesfunction.ThaiUtilities;
  *
  * @author pos
  */
-public class ReportHourlyofplumodel extends AbstractTreeTableModel {
+public class ReportHourlymodel extends AbstractTreeTableModel {
 
     private Statement stmt;
     private BeanReportHourly myroot;
@@ -29,7 +29,7 @@ public class ReportHourlyofplumodel extends AbstractTreeTableModel {
     private int[] timeOut = new int[24];
     String times = "";
     
-    public ReportHourlyofplumodel(String sql, String code, String name) throws SQLException {
+    public ReportHourlymodel(String sql, String code, String name) throws SQLException {
         db.dbconnect();
         setTime();
         stmt = null;

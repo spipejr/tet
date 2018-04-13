@@ -453,7 +453,16 @@ private void inittbl()
                 + " left join product P On dk.PCode = P.PCode  "
                 + " left join branfile b on dk.s_bran = b.code "
                 + "Where (PDate between '" + d1 + "' and '" + d2 + "') and (PFlage='Y') "
-                +"group by "+code+",time,PCode order by "+code+",time,PCode";
+                + "and dk.s_bran >= '"+branch1+"' and dk.s_bran <= '"+branch2+"' "
+                + "and b.btype >= '"+btype1+"' and b.btype <= '"+btype2+"' "
+                + "and b.barea >= '"+barea1+"' and b.barea <= '"+barea2+"' "
+                + "and b.bsize >= '"+bsize1+"' and b.bsize <= '"+bsize2+"' "
+                + "and b.bplane >= '"+bplan1+"' and b.bplane <= '"+bplan2+"' "
+                + "and b.bstore >= '"+bstore1+"' and b.bstore <= '"+bstore2+"' "
+                + "and b.companycode >= '"+company1+"' and b.companycode <= '"+company2+"' "
+                + "and b.brandcode >= '"+brand1+"' and b.brandcode <= '"+brand2+"' "
+                + "and b.buscode >= '"+bustype1+"' and b.buscode <= '"+bustype2+"' "                
+                + "group by "+code+",time,PCode order by "+code+",time,PCode";
             
             }
             else
@@ -518,7 +527,7 @@ private void inittbl()
 //                        +"and locate(dayofweek(d.s_date),'"+strday+"')>0 "
 //                        +"group by "+code+",s_pcode order by "+code+",s_pcode";
             }
-            ReportHourlyofplumodel treemodel = new ReportHourlyofplumodel(sql,code,name);
+            ReportHourlymodel treemodel = new ReportHourlymodel(sql,code,name);
             tbl.setTreeTableModel(treemodel);
             tbl.setColumnModel(tcm);
             tbl.setRootVisible(true);

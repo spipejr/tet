@@ -1666,9 +1666,9 @@ public class MainReportHourly extends javax.swing.JDialog {
     private void db_okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_db_okActionPerformed
         if(jCheckBox1.isSelected())
         {
-//            setParamiter2();
-//            rptSumSaleOfPluProduct frm = new rptSumSaleOfPluProduct(new NimbusFrame(), true);
-//            frm.setVisible(true);
+            setParamiter2();
+            //rptSumSaleOfPluProduct frm = new rptSumSaleOfPluProduct(new NimbusFrame(), true);
+            //frm.setVisible(true);
         }else
         {
             setParamiter();
