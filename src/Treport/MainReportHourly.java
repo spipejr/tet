@@ -2112,7 +2112,7 @@ String date1 = "",date2 ="",dept1="",dept2="",plu1="",plu2="",branch1="",branch2
     public void setParamiter2()
     {
         try {
-            ReportHourly para = new ReportHourly();
+            ReportHourlyofPluProduct para = new ReportHourlyofPluProduct();
         if(!t_date1.getText().trim().equals(""))
         {
             para.date1 = t_date1.getText();

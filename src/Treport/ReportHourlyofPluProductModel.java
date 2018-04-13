@@ -30,6 +30,7 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
     public ReportHourlyofPluProductModel(String sql, String code, String name) throws SQLException {
         
             db.dbconnect();
+            setTime();
             stmt = null;
             String tempproduct = " ";
             String tempproductold = " ";
@@ -59,7 +60,16 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
                 
                 tempproduct = rs.getString("PCode");
                 temppname = cvth.ASCII2Unicode(rs.getString("PDesc"));
-                
+                times = "";
+                            int hr = rs.getInt("time");
+                            for (int ii = 0; ii < timeIn.length; ii++)
+                            {
+                                if (hr == ii)
+                                {
+                                    times = timeIn[ii];
+                                    break;
+                                }
+                            }
                 
                 if(!tempproductold.equals(tempproduct))
                 {
@@ -117,8 +127,8 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
                 countgroup++;
                 counttotal++;
                 countdate++;
-                tempproductold = rs.getString("s_pcode");
-                tempbnameold = cvth.ASCII2Unicode(rs.getString("pdesc"));
+                tempproductold = rs.getString("PCode");
+                tempbnameold = cvth.ASCII2Unicode(rs.getString("PDesc"));
                 
                 
                 
@@ -214,8 +224,8 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
                 countgroup++;
                 counttotal++;
                 countdate++;
-                tempproductold = rs.getString("s_pcode");
-                tempbnameold = rs.getString("pdesc");
+                tempproductold = rs.getString("PCode");
+                tempbnameold = rs.getString("PDesc");
                 
                 
                 
@@ -257,7 +267,7 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
     @Override
     public Object getValueAt(Object node, int column) {
         //System.out.println( "getValueAt: " + node + ", " + column );
-        BeanReportHourly treenode = (BeanReportHourly) node;
+        BeanReportHourlyofPluProduct treenode = (BeanReportHourlyofPluProduct) node;
         switch (column) {
             case 0:
                 return treenode.getS_bran();
@@ -281,19 +291,19 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
 
     @Override
     public Object getChild(Object node, int index) {
-        BeanReportHourly treenode = (BeanReportHourly) node;
+        BeanReportHourlyofPluProduct treenode = (BeanReportHourlyofPluProduct) node;
         return treenode.getChildren().get(index);
     }
 
     @Override
     public int getChildCount(Object parent) {
-        BeanReportHourly treenode = (BeanReportHourly) parent;
+        BeanReportHourlyofPluProduct treenode = (BeanReportHourlyofPluProduct) parent;
         return treenode.getChildren().size();
     }
 
     @Override
     public int getIndexOfChild(Object parent, Object child) {
-        BeanReportHourly treenode = (BeanReportHourly) parent;
+        BeanReportHourlyofPluProduct treenode = (BeanReportHourlyofPluProduct) parent;
         for (int i = 0; i > treenode.getChildren().size(); i++) {
             if (treenode.getChildren().get(i) == child) {
                 return i;
@@ -305,7 +315,7 @@ public class ReportHourlyofPluProductModel extends AbstractTreeTableModel {
     }
 
     public boolean isLeaf(Object node) {
-        BeanReportHourly treenode = (BeanReportHourly) node;
+        BeanReportHourlyofPluProduct treenode = (BeanReportHourlyofPluProduct) node;
         if (treenode.getChildren().size() > 0) {
             return false;
         }

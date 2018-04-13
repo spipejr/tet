@@ -535,9 +535,9 @@ private void inittbl()
             //h.setReorderingAllowed(false);
             tbl.setLeafIcon(null);
         } catch (ParseException ex) {
-//            Logger.getLogger(rptSaleOfPlu.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (SQLException ex) {
-//            Logger.getLogger(rptSaleOfPlu.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 }
     private void setTxt()
