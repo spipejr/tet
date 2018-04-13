@@ -1667,8 +1667,8 @@ public class MainReportHourly extends javax.swing.JDialog {
         if(jCheckBox1.isSelected())
         {
             setParamiter2();
-            //rptSumSaleOfPluProduct frm = new rptSumSaleOfPluProduct(new NimbusFrame(), true);
-            //frm.setVisible(true);
+            ReportHourlyofPluProduct frm = new ReportHourlyofPluProduct(new NimbusFrame(), true);
+            frm.setVisible(true);
         }else
         {
             setParamiter();

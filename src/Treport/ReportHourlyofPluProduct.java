@@ -57,7 +57,7 @@ import org.jdesktop.swingx.JXTree;
 //import static reportfile.rptSumSaleOfPlu.plu2;
 //import static reportfile.rptSumSaleOfPlu.strday;
 import utilititiesfunction.*;
-public class ReportHourly extends javax.swing.JDialog {
+public class ReportHourlyofPluProduct extends javax.swing.JDialog {
 
      public static String date1 = "",date2 =""//,dept1="",dept2="",plu1="",plu2=""
              ,branch1="",branch2="",btype1="",btype2=""
@@ -65,13 +65,13 @@ public class ReportHourly extends javax.swing.JDialog {
             ,company1="",company2="",brand1="",brand2="",bustype1="",bustype2="",code="",name="";
     private Font fontbold = new Font("Norasi", Font.BOLD, 14);
     private Font fontplain = new Font("Norasi", Font.PLAIN, 14);
-    String frmName = "ReportHourly";
+    String frmName = "ReportHourlyofPluProduct";
     ThaiUtilities cvth = new ThaiUtilities();
     private String condition = "";
     
     
     
-    public ReportHourly(java.awt.Frame parent, boolean modal) {
+    public ReportHourlyofPluProduct(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         inittbl();
@@ -80,7 +80,7 @@ public class ReportHourly extends javax.swing.JDialog {
         setTxt();
     }
 
-    public ReportHourly() {
+    public ReportHourlyofPluProduct() {
     }
 
     /**
@@ -462,7 +462,7 @@ private void inittbl()
                 + "and b.companycode >= '"+company1+"' and b.companycode <= '"+company2+"' "
                 + "and b.brandcode >= '"+brand1+"' and b.brandcode <= '"+brand2+"' "
                 + "and b.buscode >= '"+bustype1+"' and b.buscode <= '"+bustype2+"' "                
-                + "group by "+code+",time,PCode order by "+code+",time,PCode";
+                + "group by PCode,"+code+",time order by PCode,"+code+",time";
             
             }
             else
@@ -481,7 +481,7 @@ private void inittbl()
                 +"and b.companycode >= '"+cvth.Unicode2ASCII(company1)+"' and b.companycode <= '"+cvth.Unicode2ASCII(company2)+"' "
                 +"and b.brandcode >= '"+cvth.Unicode2ASCII(brand1)+"' and b.brandcode <= '"+cvth.Unicode2ASCII(brand2)+"' "
                 +"and b.buscode >= '"+cvth.Unicode2ASCII(bustype1)+"' and b.buscode <= '"+cvth.Unicode2ASCII(bustype2)+"' "
-                +"group by "+code+",time,PCode order by "+code+",time,PCode";
+                + "group by PCode,"+code+",time order by PCode,"+code+",time";
                 
                 
 //                sql = "SELECT punit1,s_price,pdesc,s_pcode,pgroup,b.name as branchname,bt.btname as Btypename,ar.name as BAreaname"
@@ -524,7 +524,7 @@ private void inittbl()
 //                        +"and locate(dayofweek(d.s_date),'"+strday+"')>0 "
 //                        +"group by "+code+",s_pcode order by "+code+",s_pcode";
             }
-            ReportHourlymodel treemodel = new ReportHourlymodel(sql,code,name);
+            ReportHourlyofPluProductModel treemodel = new ReportHourlyofPluProductModel(sql,code,name);
             tbl.setTreeTableModel(treemodel);
             tbl.setColumnModel(tcm);
             tbl.setRootVisible(true);
